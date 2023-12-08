@@ -7,7 +7,23 @@ const mixed =
 
 const asyncAwait =
   ({ createPromise }: ExerciseContext) =>
-  async () => {};
+  async () => {
+    const BD = async () => {
+      await createPromise("B");
+      await createPromise("D");
+    };
+
+    const CE = async () => {
+      await createPromise("C");
+      await createPromise("E");
+    };
+
+    await createPromise("A");
+
+    await Promise.all([BD(), CE()]);
+
+    await createPromise("F");
+  };
 
 const thenCatch =
   ({ createPromise }: ExerciseContext) =>
